@@ -1586,6 +1586,10 @@
   scrollbar-width: none;
   }
 
+.collection-list::-webkit-scrollbar {
+  display: none;
+  }
+
 .collection-list__item {
   flex-shrink: 0;
   width: 200px;
