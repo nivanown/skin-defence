@@ -1515,6 +1515,7 @@
   }
 
 .certification-info {
+  position: relative;
   flex-direction: column;
   gap: 16px 0;
   padding: 24px;
