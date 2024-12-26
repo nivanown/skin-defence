@@ -309,7 +309,8 @@
   }
 
 .advantages-material p {
-  max-width: 350px;
+  flex-shrink: 0;
+  max-width: 360px;
   font-size: 15px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 300;
@@ -489,6 +490,7 @@
   flex-shrink: 0;
   width: 154px;
   border-radius: 6px;
+  cursor: pointer;
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.02), 0px 2px 5px 0px rgba(0, 0, 0, 0.03), 0px 4px 9px 0px rgba(0, 0, 0, 0.04), 0px 6px 15px 0px rgba(0, 0, 0, 0.05), 0px 12px 29px 0px rgba(0, 0, 0, 0.06), 0px 29px 69px 0px rgba(0, 0, 0, 0.08);
   }
 
@@ -506,6 +508,7 @@
   z-index: 5;
   pointer-events: none;
   transition: .3s background;
+  cursor: pointer;
   }
 
 .certification-info__img:hover:before {
@@ -525,20 +528,12 @@
   content: "";
   z-index: 6;
   pointer-events: none;
-  }
-
-.certification-info__img a {
-  display: block;
-  width: 100%;
-  height: 100%;
-  } 
-
-.certification-info__img a:hover {
-  opacity: 1;
+  cursor: pointer;
   }
 
 .certification-info__img img {
   border-radius: 6px;
+  cursor: pointer;
   }
 
 /* information-col */
@@ -564,13 +559,50 @@
   overflow: hidden;
   }
 
+/* video */
+.information-col__img video {
+  position: absolute;
+  min-width: 100%; 
+  min-height: 100%;
+  width: auto; 
+  height: auto; 
+  top: 0;
+  left: 0;
+  vertical-align: top;
+  z-index: 3;
+  }
+
+@media (min-aspect-ratio: 16/9) {
+  .information-col__img video { 
+    height: 300%; 
+    top: -100%;
+    }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  .information-col__img video { 
+    width: 300%; 
+    left: -100%;
+    }
+}
+
+@supports (object-fit: cover) {
+  .information-col__img video {
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    object-fit: cover;
+    }
+}
+
 .information-col__img_mov-icon {
   position: relative;
   }
 
 .information-col__img_mov-icon:before {
   position: absolute;
-  display: block;
+  display: none;
   width: 64px;
   height: 74px;
   top: 50%;
@@ -766,6 +798,83 @@
 .dec-section__img img {
   width: 100%;
   vertical-align: top;
+  }
+
+/* scroll-none */
+body.scroll-none {
+  overflow: hidden;
+  }
+
+/* doc-modal */
+.doc-modal {
+  position: fixed;
+  padding: 70px 20px;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: .5s all;
+  }
+
+.doc-modal.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  }
+
+.doc-modal__content {
+  position: relative;
+  margin: 0 auto;
+  padding: 10px;
+  max-width: 550px;
+  background: #fff;
+  }
+
+.doc-modal__close {
+  position: absolute;
+  display: block;
+  width: 20px;
+  height: 20px;
+  top: 20px;
+  right: 20px;
+  font-size: 0;
+  background: url(../content_img/results-wrinkles/icons/close-button.png) center no-repeat;
+  background-size: 100%;
+  z-index: 10;
+  cursor: pointer;
+  transition: .3s opacity;
+  }
+
+.doc-modal__close:hover {
+  opacity: 0.6;
+  }
+
+.doc-modal__img img {
+  width: 100%;
+  vertical-align: top;
+  }
+
+.modal-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 998;
+  pointer-events: none;
+  }
+
+.modal-overlay.show {
+  opacity: 0.6;
+  visibility: visible;
+  pointer-events: auto;
   }
 
 /* 1440 */
@@ -1155,6 +1264,18 @@
 
 }
 
+@media (max-width: 1100px) {
+  .advantages-material__img {
+    left: -5.86vw;
+    }
+  }
+
+@media (max-width: 900px) {
+  .advantages-material__img {
+    left: -7vw;
+    }
+  }
+
 /* 767 */
 @media (max-width: 767px) {
 
@@ -1181,7 +1302,7 @@
   }
 
 .skin-defence-title {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 22px !important;
   }
 
@@ -1265,7 +1386,7 @@
   }
 
 .protection-innovations__item p {
-  font-size: 10px;
+  font-size: 12px;
   text-align: left;
   line-height: 18px;
   }
@@ -1357,17 +1478,22 @@
 
 .information-list__title {
   margin: 0 0 4px;
-  font-size: 12px;
-  line-height: 14px;
+  font-size: 14px;
+  line-height: 20px;
   }
 
 .information-list p {
-  font-size: 10px;
+  font-size: 12px;
   line-height: 18px;
   }
 
+.information-list p br {
+  display: none;
+  }
+
 .information-list p span {
-  font-size: 8px;
+  display: block;
+  font-size: 12px;
   }
 
 .advantages-material-section {
@@ -1429,8 +1555,12 @@
   }
 
 .advantages-material p {
-  font-size: 10px;
-  line-height: 18px;
+  font-size: 12px;
+  line-height: 20px;
+  }
+
+.advantages-material p br {
+  display: none;
   }
 
 .advantages-material__img {
@@ -1461,7 +1591,7 @@
   }
 
 .how-works-section__subtitle-text {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 20px;
   }
 
@@ -1506,8 +1636,12 @@
 
 .how-works-list p {
   margin: 0;
-  font-size: 10px;
-  line-height: 18px;
+  font-size: 12px;
+  line-height: 20px;
+  }
+
+.how-works-list p br {
+  display: none;
   }
 
 .certification-section {
@@ -1538,9 +1672,13 @@
   }
 
 .certification-info p {
-  font-size: 10px;
+  font-size: 12px;
   text-align: center;
-  line-height: 18px;
+  line-height: 20px;
+  }
+
+.certification-info p br {
+  display: none;
   }
 
 .certification-info__img {
@@ -1607,13 +1745,13 @@
 
 .collection-list__title {
   max-width: inherit;
-  font-size: 10px;
-  line-height: 12px;
+  font-size: 12px;
+  line-height: 18px;
   }
 
 .collection-list__price {
-  font-size: 10px;
-  line-height: 12px;
+  font-size: 12px;
+  line-height: 18px;
   }
 
 .dec-section {
@@ -1651,7 +1789,7 @@
 
 }
 
-/* 375 */
+/* 450 */
 @media (max-width: 450px) {
 
 .information-col__line-dec {
@@ -1661,5 +1799,46 @@
   top: 76px;
   left: 50%;
   }
+
+}
+
+/* 374 */
+@media (max-width: 374px) {
+
+.information-list__icon {
+  width: 50px;
+  }
+
+.information-col_style-two .information-list__icon {
+  width: 50px;
+  }
+
+.advantages-material__description {
+  gap: 0 24px;
+  }
+
+.advantages-material__title {
+  font-size: 10px;
+  }   
+
+.advantages-material__title br {
+  display: none;
+  }
+
+.protection-innovations__numbers span {
+  padding: 0 80px 0 0;
+  }
+
+.protection-innovations__item:first-child .protection-innovations__img {
+  top: -65px;
+  right: -47px;
+  }
+
+.protection-innovations__item:last-child .protection-innovations__img {
+  left: -4px;
+  bottom: 70px;
+  }
+
+
 
 }
